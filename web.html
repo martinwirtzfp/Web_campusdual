@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+
+</head>
+<body>
+    <div class="generalGrid">
+        <div class="nuevoEmail">
+            <div class="contenedorH1">
+                <h1>Nuevo email</h1>
+            </div>
+            <form id="miFormulario">
+                <label for="email-remitente">Tu email:</label>
+                <br>
+                <input type="email" id="email-remitente" name="emailRemitente" required>
+                <br>
+                <br>
+                
+                <label for="email-destinatario">Email destinatario:</label>
+                <br>
+                <input type="email" id="email-destinatario" name="emailDestinatario" required>
+                <br>
+                <br>
+                
+                <label for="asunto">Asunto:</label>
+                <br>
+                <input type="text" id="asunto" name="asunto" required>
+                <br>
+                <br>
+                
+                <label for="mensaje">Mensaje:</label>
+                <br>
+                <textarea id="mensaje" name="mensaje" rows="6" cols="40" required></textarea>
+                <br>
+                <br>
+                <button type="submit">Enviar</button>
+            </form>
+
+        </div>
+        <div class="historial" id="miHistorial">
+            <div class="contenedorH2">
+                <h1>Historial</h1>
+            </div>          
+        </div>
+  </div>
+</body>
+</html>

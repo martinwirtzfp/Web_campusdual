@@ -1,0 +1,105 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.generalGrid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    height: 100%;
+}
+
+.nuevoEmail {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 8%;
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+    background-size: 400% 400%;
+    animation: neonMove 5s linear infinite;
+}
+
+/* Animación del fondo */
+@keyframes neonMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.contenedorH1 {
+    background: linear-gradient(to right, #f3f3f3, lightblue);
+    margin-left: 10%;
+    margin-right: 9%;
+    border-radius: 4px;
+}
+
+h1 {
+    margin-left: 10%;
+
+}
+
+label {
+    margin-left: 10%;
+}
+
+input,
+textarea {
+    margin-left: 10%;
+    margin-bottom: 10px;
+    width: 80%;
+}
+
+form button {
+    margin-left: 10%;
+}
+
+.historial {
+    background-color: lightcoral;
+    padding: 20px;
+    overflow-y: auto;   /* Scroll interno */
+    height: 100%;       
+    box-sizing: border-box; /* Incluye el padding en la altura para
+                               evitar que se corte el contenido */
+}
+
+.contenedorH2 {
+    background: linear-gradient(to right, #f3f3f3, lightcoral);
+    border-radius: 4px;
+    margin-left: 10%;
+    margin-right: 9%;
+    margin-bottom: 10%;
+    padding-top: 0.5px;
+    padding-bottom: 0.5px;
+}
+
+.superbloque {
+    display: flex;
+    flex-direction: column;
+    background-color: #f3f3f3;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border-left: 4px solid #007bff;
+}
+
+.botonBorrar {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 5px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.emailEnviado {
+    margin-top: 10px;
+}
