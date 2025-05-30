@@ -1,7 +1,6 @@
 html, body {
     margin: 0;
     height: 100%;
-    overflow: hidden;
 }
 
 .generalGrid {
@@ -15,12 +14,13 @@ html, body {
     flex-direction: column;
     padding: 20px;
     gap: 8%;
-    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+    /*Buscado en internet*/
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff); 
     background-size: 400% 400%;
     animation: neonMove 5s linear infinite;
 }
 
-/* Animación del fondo */
+/* Animación del fondo (sacada de internet)*/
 @keyframes neonMove {
     0% {
         background-position: 0% 50%;
@@ -66,7 +66,8 @@ form button {
     background-color: lightcoral;
     padding: 20px;
     overflow-y: auto;   /* Scroll interno */
-    height: 100%;       
+    height: 100%;   
+    /*Buscado en internet*/    
     box-sizing: border-box; /* Incluye el padding en la altura para
                                evitar que se corte el contenido */
 }
