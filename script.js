@@ -1,57 +1,88 @@
-// Esperamos a que todo el HTML esté cargado antes de ejecutar el script
-document.addEventListener('DOMContentLoaded', function () {
-  const form = document.getElementById('miFormulario'); //Seleccionamos el formulario del DOM
-  const historial = document.getElementById('miHistorial'); //Seleccionamos el contenedor del historial de correos
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('miFormulario');
+  const historial = document.getElementById('miHistorial');
 
-  //Añadimos un evento que se dispara cuando se envía el formulario
-  form.addEventListener('submit', function (e) {
-        e.preventDefault(); //Evitamos que el formulario recargue la página al enviarse
-        
-        //Obtenemos los valores introducidos por el usuario en cada campo
-        const remitente = document.getElementById('email-remitente').value;
-        const destinatario = document.getElementById('email-destinatario').value;
-        const asunto = document.getElementById('asunto').value;
-        const mensaje = document.getElementById('mensaje').value;
+  // Array para almacenar los correos
+  const correos = [];
 
-        //Creamos un superbloque al que añadiremos lo que iremos creando
-        const superbloque = document.createElement('div');
-        superbloque.classList.add('superbloque'); //Creamos una clase para poder aplicarle estilos
+  form.addEventListener('submit', e => {
+    e.preventDefault();
 
-        //Creamos un nuevo bloque <div> para representar el "email enviado"
-        const nuevoRegistro = document.createElement('div');
+    const remitente = document.getElementById('email-remitente').value;
+    const destinatario = document.getElementById('email-destinatario').value;
+    const asunto = document.getElementById('asunto').value;
+    const mensaje = document.getElementById('mensaje').value;
 
-        //Le añadimos una clase para poder aplicarle estilos
-        nuevoRegistro.classList.add('emailEnviado');
+    // Añadimos el correo al array
+    const nuevoCorreo = { remitente, destinatario, asunto, mensaje };
+    correos.push(nuevoCorreo);
 
-        // Rellenamos ese <div> con el contenido del mensaje
-        nuevoRegistro.innerHTML = `
-        <hr>
-        <p><strong>De:</strong> ${remitente}</p>
-        <p><strong>Para:</strong> ${destinatario}</p>
-        <p><strong>Asunto:</strong> ${asunto}</p>
-        <p><strong>Mensaje:</strong> ${mensaje}</p>
-        `;
+    // Función para añadir el correo al historial
+    agregarCorreo(nuevoCorreo); 
 
-        //Creamos un boton para poder borrar el mensaje
-        const botonBorrar = document.createElement('button');
-        botonBorrar.classList.add('botonBorrar');
-        botonBorrar.innerHTML = 'Eliminar email';
-        botonBorrar.addEventListener('click', function () {
-            let elementoABorrar = botonBorrar.parentElement;
-            elementoABorrar.remove();
-        });
-        
-        //Añadimos el botón y el email enviado al superbloque
-        superbloque.appendChild(botonBorrar);
-        superbloque.appendChild(nuevoRegistro);
+    form.reset();
 
-        //Añadimos el superbloque al contenedor
-        historial.appendChild(superbloque);
-
-        //Limpiamos todos los campos del formulario
-        form.reset();
-
-        //Mostramos un mensaje para confirmar que se ha enviado
-        alert('Correo enviado ✅');
+    alert('Correo enviado ✅');
   });
+
+  // Creamos el elemento select
+  const selectOrden = document.createElement('select');
+  selectOrden.classList.add('select');
+  selectOrden.innerHTML = `
+    <option value="">-- Ordenar por --</option>
+    <option value="destinatario">Destinatario</option>
+    <option value="asunto">Asunto</option>
+  `;
+   historial.appendChild(selectOrden); // Lo añadimos debajo de contenedorH2
+
+  // Evento que se dispara cuando se cambia el select
+  // Solo se dispara si se ha seleccionado algo (si el value no es "")
+  selectOrden.addEventListener('change', () => {
+    if (selectOrden.value !== "") {
+      ordenarYMostrar(selectOrden.value);
+    }
+  });
+
+  // Función agregarCorreo
+  function agregarCorreo(correo) {
+    const superbloque = document.createElement('div');
+    superbloque.classList.add('superbloque');
+
+    const nuevoRegistro = document.createElement('div');
+    nuevoRegistro.classList.add('emailEnviado');
+    nuevoRegistro.innerHTML = `
+      <hr>
+      <p><strong>De:</strong> ${correo.remitente}</p>
+      <p><strong>Para:</strong> ${correo.destinatario}</p>
+      <p><strong>Asunto:</strong> ${correo.asunto}</p>
+      <p><strong>Mensaje:</strong> ${correo.mensaje}</p>
+    `;
+
+    const botonBorrar = document.createElement('button');
+    botonBorrar.classList.add('botonBorrar');
+    botonBorrar.innerHTML = 'Eliminar email';
+    botonBorrar.addEventListener('click', () => {
+      const index = correos.indexOf(correo); // Busca el correo en el array
+      if (index !== -1) correos.splice(index, 1); // Elimina el correo
+      superbloque.remove(); // Elimina este superbloque del historial
+    });
+
+    superbloque.appendChild(botonBorrar);
+    superbloque.appendChild(nuevoRegistro);
+    historial.appendChild(superbloque);
+  }
+
+  // Función para ordenar y volver a mostrar el historial completo
+  function ordenarYMostrar(criterio) {
+    // Limpiar todos los correos (menos el <select>)
+    historial.querySelectorAll('.superbloque').forEach(el => el.remove());
+
+    // Crear copia ordenada
+    const listaOrdenada = correos.slice().sort((a, b) =>
+    a[criterio].localeCompare(b[criterio])
+  );
+
+    // Mostrar cada correo ordenado
+    listaOrdenada.forEach(correo => agregarCorreo(correo));
+  }
 });

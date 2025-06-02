@@ -1,6 +1,9 @@
 html, body {
     margin: 0;
     height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1e1e2f; /* Fondo oscuro general */
+    color: #f0f0f0; /* Texto claro */
 }
 
 .generalGrid {
@@ -15,7 +18,7 @@ html, body {
     padding: 20px;
     gap: 8%;
     /*Buscado en internet*/
-    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff); 
+    background: linear-gradient(135deg, #2b5876, #4e4376); 
     background-size: 400% 400%;
     animation: neonMove 5s linear infinite;
 }
@@ -36,7 +39,7 @@ html, body {
 }
 
 .contenedorH1 {
-    background: linear-gradient(to right, #f3f3f3, lightblue);
+    background: linear-gradient(to right, #3a3a52, #4e4e6a);
     margin-left: 10%;
     margin-right: 9%;
     border-radius: 4px;
@@ -56,14 +59,37 @@ textarea {
     margin-left: 10%;
     margin-bottom: 10px;
     width: 80%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #555;
+    background-color: #2c2c3c;
+    color: #fff;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #61dafb;
 }
 
 form button {
     margin-left: 10%;
+    background-color: #61dafb;
+    color: #000;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #21a1f1;
 }
 
 .historial {
-    background-color: lightcoral;
+    background-color: #282c34;
     padding: 20px;
     overflow-y: auto;   /* Scroll interno */
     height: 100%;   
@@ -73,34 +99,62 @@ form button {
 }
 
 .contenedorH2 {
-    background: linear-gradient(to right, #f3f3f3, lightcoral);
+    background: linear-gradient(to right, #3a3a52, #4e4e6a);
     border-radius: 4px;
     margin-left: 10%;
     margin-right: 9%;
     margin-bottom: 10%;
     padding-top: 0.5px;
     padding-bottom: 0.5px;
+    color: #ffffff
 }
 
 .superbloque {
     display: flex;
     flex-direction: column;
-    background-color: #f3f3f3;
+    background-color: #3c3f51;
     padding: 10px;
     margin-top: 10px;
     border-radius: 5px;
-    border-left: 4px solid #007bff;
+    border-left: 4px solid #61dafb;
+    color: #f0f0f0;
 }
 
 .botonBorrar {
-    background-color: #dc3545;
+    background-color: #e74c3c;
     color: #fff;
     border: none;
     padding: 5px 5px;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.botonBorrar:hover {
+    background-color: #c0392b;
 }
 
 .emailEnviado {
     margin-top: 10px;
 }
+
+.select {
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.select:hover {
+  border-color: #888;
+  background-color: #f1f1f1;
+}
+
+.select:focus {
+  outline: none;
+  border-color: #007BFF;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
